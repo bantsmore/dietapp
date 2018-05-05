@@ -36,7 +36,7 @@ export default class Body extends Component {
     render() {
       return (
         <div style={styles.main}>
-        <IngredientList/>
+        <IngredientList ingredients = {this.props.ingredients} />
         </div>
       )
     }

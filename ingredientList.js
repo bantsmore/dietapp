@@ -34,10 +34,13 @@ const styles = {
 
 export default class IngredientList extends Component {
     render() {
+      const data = this.props.ingredients;
+      const listItems = data.map((d) => <li key={d}>
+      <Ingredient ingredientName={d}/> </li>);
+      
       return (
         <div style={styles.ingredientsList}>
-          <Ingredient/>
-          <Ingredient/>
+          {listItems}
         </div>
       )
     }

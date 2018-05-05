@@ -32,11 +32,10 @@ const styles = {
 }
 
 export default class Ingredient extends Component {
-    //props.name = 'mushroom'
     render() {
       return (
         <div style={styles.ingredient}>
-        mushroom
+        {this.props.ingredientName}
         </div>
       )
     }

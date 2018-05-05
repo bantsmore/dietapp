@@ -36,7 +36,9 @@ export default class Body extends Component {
     render() {
       return (
         <div style={styles.main}>
-        <Meal/>
+        <Meal mealName={'Penne Carbonara'}
+        ingredients={
+          ['onion', 'pancetta', 'double cream', 'penne', 'parmesan', 'egg']}/>
         </div>
       )
     }
