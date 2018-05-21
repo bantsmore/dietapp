@@ -1,7 +1,10 @@
 // Meal component
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import IngredientList from './ingredientList.js'
+import MealImage from './MealImage'
+import IngredientList from './IngredientList.js'
+import MethodList from './MethodList.js'
+import IngredientListCompressed from './IngredientListCompressed'
 
 const styles = {
   app: {
@@ -21,7 +24,6 @@ const styles = {
     padding: 0,
     color: 'lime',
     backgroundColor: 'red',
-    height: '400px',
   },
   ingredientsList: {
     backgroundColor: 'white',
@@ -32,12 +34,41 @@ const styles = {
   },
 }
 
+
+
 export default class Body extends Component {
+  constructor() {
+    super();
+    this.state = {
+      view: 'mealView'
+    }
+
+    this.handleClick = this.handleClick.bind(this);
+
+  }
+
+    handleClick = function(e){
+    this.setState({
+      view: 'ingredientsView',
+    })
+    }
+
     render() {
-      return (
-        <div style={styles.main}>
-        <IngredientList ingredients = {this.props.ingredients} />
-        </div>
-      )
+      switch(this.state.view){
+        case 'mealView':
+          return (
+            <div style={styles.main}>
+            <MealImage src={this.props.mealData.image.src} />
+            <IngredientListCompressed ingredients = {this.props.mealData.ingredients} onClick = {this.handleClick}/>
+            <MethodList method = {this.props.mealData.method} />
+            </div>);
+        case 'ingredientsView':
+            return (
+              <div style={styles.main}>
+              <MealImage src={this.props.mealData.image.src} />
+              <IngredientList ingredients = {this.props.mealData.ingredients}/>
+              </div>
+            )
+      }
     }
   }
