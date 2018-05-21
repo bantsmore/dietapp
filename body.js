@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import Meal from './Meal.js'
+import MealSearch from './MealSearch'
 
 const styles = {
   app: {
@@ -59,8 +60,9 @@ export default class Body extends Component {
     render() {
       return (
         <div style={styles.main}>
-        <Meal mealName={'Penne Carbonara'} mealData={penneCarbonara} />
+        <MealSearch />
         </div>
+        //<Meal mealName={'Penne Carbonara'} mealData={penneCarbonara} />
       )
     }
   }

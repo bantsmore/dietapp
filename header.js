@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import BackButton from './BackButton'
+import { actionCreators } from './dietAppRedux';
 
 const style = {
   paddingTop: '5px',
@@ -34,8 +35,11 @@ export default class Header extends Component {
     this.clickBackButton = this.clickBackButton.bind(this);
   }
 
-  clickBackButton = function() {
+  clickBackButton() {
+    const {store} = this.props
+    store.dispatch(actionCreators.add('textextext'))
     console.log('time to go back')
+    console.log(store.getState())
   }
 
   render() {
