@@ -9,6 +9,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     padding: '3px',
+    paddingRight: '20px',
   },
 }
 

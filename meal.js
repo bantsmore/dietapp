@@ -34,8 +34,6 @@ const styles = {
   },
 }
 
-
-
 export default class Body extends Component {
   constructor() {
     super();
