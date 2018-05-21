@@ -1,11 +1,10 @@
 // Ingredient component
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import IngredientName from './IngredientName'
-import IngredientAmount from './IngredientAmount'
+import MethodDescription from './MethodDescription'
 
 const styles = {
-  ingredient: {
+  method: {
     width: '100%',
     borderStyle: 'solid',
     borderColor: '#2b8087',
@@ -16,8 +15,7 @@ const styles = {
     color: 'black',
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    verticalAlign: 'middle',
+    height: '40px'
   },
 }
 
@@ -26,9 +24,8 @@ export default class Ingredient extends Component {
       
       return (
         
-        <div style={styles.ingredient}>
-          <IngredientName ingredientName={this.props.ingredientName} />
-          <IngredientAmount ingredientAmount={this.props.amount} />
+        <div style={styles.method}>
+            <MethodDescription description={this.props.description} />
         </div>
       )
     }

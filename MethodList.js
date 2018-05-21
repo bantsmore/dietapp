@@ -1,30 +1,31 @@
 // Ingredient list component
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import Ingredient from './Ingredient.js'
+import Method from './Method.js'
 
 const styles = {
-  ingredientsList: {
+  methodList: {
     backgroundColor: 'white',
     display: 'flex',
     justifyContent: 'center',
     padding: '3px',
+    paddingRight: '20px',
   },
 }
 
-const getIngredientsList = function(props){
+const getMethodList = function(props){
   return(
     <div>
-      {props.ingredients.map((a, i) => <Ingredient key={i} {...a}/>)}
+      {props.method.map((a, i) => <Method key={i} {...a}/>)}
       </div>
   );
   };
 
 export default class IngredientList extends Component {
     render() {
-      var liveList = getIngredientsList(this.props)
+      var liveList = getMethodList(this.props)
       return (
-        <div style={styles.ingredientsList}>
+        <div style={styles.methodList}>
           {liveList}
         </div>
       )
