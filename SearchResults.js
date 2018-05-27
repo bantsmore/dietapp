@@ -3,20 +3,54 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 
 const style = {
-    padding: '20px',
+    padding: '0px',
+    margin: '0px',
     width: '100%',
     height: '100%',
-    backgroundColor: 'whitesmoke',
+    backgroundColor: 'white',
     position: 'relative',
+    color: 'black',
+    fontFamily: 'arial',
+    fontSize: '16pt',
+}
+const ulStyle = {
+  listStyleType: 'none',
+  padding: '0',
+}
+const liStyle = {
+  backgroundColor: 'whitesmoke',
+  margin: '10px',
+  padding: '10px',
+  textAlign: 'center',
 }
 
 export default class SearchResults extends Component {
 
     render() {
       return (
-        <div style={style}>
-        Search Results
+        <div style = {style}>
+          <ul style = {ulStyle}>
+            {
+              this.props.items.map(function(item) {
+                return <li key = {item} style = {liStyle}>{item}</li>
+              })
+            }
+          </ul>
         </div>
       )
     }
   }
+/*
+  var List = React.createClass({
+    render: function(){
+      return (
+        <ul className="list-group">
+        {
+          this.props.items.map(function(item) {
+            return <li className="list-group-item" data-category={item} key={item}>{item}</li>
+          })
+         }
+        </ul>
+      )  
+    }
+  });*/

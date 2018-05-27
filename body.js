@@ -1,68 +1,72 @@
 // header component
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import Meal from './Meal.js'
 import MealSearch from './MealSearch'
+import Meal from './Meal'
+import LandingPage from './LandingPage'
 
-const styles = {
-  app: {
-    padding: 0,
-    textAlign: 'center',
-    color: 'blue',
-    border: '5px solid blue',
-  },
-  header: {
-    padding: 0,
-    textAlign: 'center',
-    color: 'white',
-    backgroundColor: 'green',
-    height: '50px',
-  },
-  main: {
-    padding: 0,
-    color: 'lime',
-    backgroundColor: 'blue',
-    //height: '400px',
-  },
-  ingredientsList: {
-    backgroundColor: 'white',
-  },
-  ingredient: {
-    backgroundColor: 'white',
-    color: 'black',
-  },
-}         
+import { actionCreators } from './dietAppRedux'
 
-const penneCarbonara= {
-          "ingredientCollectionId": "Penne Carbonara",
-          "NutritionDatabaseId": "470612",
-          "ingredients": [
-            {"ingredientName": "pancetta", "amount": "30g"},
-            {"ingredientName": "double cream", "amount": "40ml"},
-            {"ingredientName": "penne", "amount": "200g"},
-            {"ingredientName": "parmesan", "amount": "50g"},
-            {"ingredientName": "egg", "amount": "1"},
-            {"ingredientName": "onion", "amount": "50g"}
-          ],
-          "method":[
-            {"description": "Fry onion and pancetta in hot pan until golden. Begin to boil pasta until al dente."},
-            {"description": "Once al dente, drain almost all the water and mix pasta with pancetta & onion."},
-            {"description": "Add double cream and egg and mix in before adding parmasan to taste."}
-          ],
-          "image":{
-            "src":"https://images.media-allrecipes.com/userphotos/560x315/2603977.jpg",
-            "href":"https://images.media-allrecipes.com/userphotos/560x315/2603977.jpg",
-            "tag":"Penne Carbonara"}
-      }
+const style = {
+  padding: 0,
+  color: 'lime',
+}
 
 export default class Body extends Component {
+  constructor(){
+    super();
+    this.selectViewState = this.selectViewState.bind(this)
+    this.onClickButton = this.onClickButton.bind(this)
+  }
+  state = {}
 
-    render() {
-      return (
-        <div style={styles.main}>
-        <MealSearch />
-        </div>
-        //<Meal mealName={'Penne Carbonara'} mealData={penneCarbonara} />
-      )
+  componentWillMount() {
+    const {store} = this.props
+
+    const {mountState} = store.getState()
+    this.setState({mountState})
+
+    this.unsubscribe = store.subscribe(() => {
+      const {mountState} = store.getState()
+      this.setState({mountState})
+    })
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe()
+  }
+
+  onClickButton(e) {
+    console.log(e.target.value)
+    const {store} = this.props
+    store.dispatch(actionCreators.newview(e.target.value))
+  }
+
+  selectViewState(store, data) {
+    console.log(store.getState().view)
+    switch(store.getState().view){
+      case 'landing':
+        return(<LandingPage
+          onClick = {this.onClickButton}
+          onClick = {this.onClickButton} />)
+      case 'meal':
+        return(<Meal
+          mealData={data.meals[0]} />)
+      case 'mealSearch':
+        return(<MealSearch 
+          initialItems = {data.meals.map(a => { return a.mealName })} />)
     }
   }
+
+  render() {
+    const {store} = this.props
+    const data = store.getState();
+    return (<div style={style}>
+      {this.selectViewState(store, data)}</div>
+      /*<div style={style}>
+      <MealSearch initialItems = {data.meals.map(a => { return a.mealName })} />
+      </div>*/
+      //<Meal mealName={'Penne Carbonara'} mealData={penneCarbonara} />
+    )
+  }
+}

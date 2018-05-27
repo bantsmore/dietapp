@@ -15,7 +15,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-      <Header store = {store} headerString = {'Title'}/>
+      <Header store = {store} headerString = {'Diet App'} />
       <Body store = {store} />
       </div>
     )

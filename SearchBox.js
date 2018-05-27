@@ -4,8 +4,7 @@ import ReactDOM from 'react-dom'
 
 const style = {
     marginTop: '0px',
-    marginBottom: '13px',
-    backgroundColor: 'blue',
+    marginBottom: '0px',
     width: '100%',
     height: '40px',
     position: 'relative',
