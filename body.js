@@ -51,7 +51,7 @@ export default class Body extends Component {
           onClick = {this.onClickButton} />)
       case 'meal':
         return(<Meal
-          mealData={data.meals[0]} />)
+          mealData={data.meals[Math.floor((Math.random() * 5))]} />)
       case 'mealSearch':
         return(<MealSearch 
           initialItems = {data.meals.map(a => { return a.mealName })} />)
