@@ -36,10 +36,7 @@ export default class Header extends Component {
   }
 
   clickBackButton() {
-    const {store} = this.props
-    store.dispatch(actionCreators.add('textextext'))
-    console.log('time to go back')
-    console.log(store.getState())
+    console.log('Back Home')
   }
 
   render() {

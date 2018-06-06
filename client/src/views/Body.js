@@ -1,18 +1,23 @@
-// header component
+// Body component
+// React imports
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import PropTypes from 'prop-types'
+// Router imports
+import { Route, Link } from 'react-router-dom'
+// Redux imports
+import { actionCreators } from '../../dietAppRedux'
+// Component imports
 import MealSearch from './MealSearch'
 import Meal from './Meal'
 import LandingPage from './LandingPage'
-
-import { actionCreators } from '../../dietAppRedux'
 
 const style = {
   padding: 0,
   color: 'lime',
 }
 
-export default class Body extends Component {
+class Body extends Component {
   constructor(){
     super();
     this.selectViewState = this.selectViewState.bind(this)
@@ -43,7 +48,6 @@ export default class Body extends Component {
   }
 
   selectViewState(store, data) {
-    console.log(store.getState().view)
     switch(store.getState().view){
       case 'landing':
         return(<LandingPage
@@ -54,19 +58,31 @@ export default class Body extends Component {
           mealData={data.meals[Math.floor((Math.random() * 5))]} />)
       case 'mealSearch':
         return(<MealSearch 
-          initialItems = {data.meals.map(a => { return a.mealName })} />)
+          initialItems = {data.meals.map(a => { return a.mealName })}
+          store = {store} />)
     }
   }
 
   render() {
     const {store} = this.props
     const data = store.getState();
-    return (<div style={style}>
-      {this.selectViewState(store, data)}</div>
-      /*<div style={style}>
-      <MealSearch initialItems = {data.meals.map(a => { return a.mealName })} />
-      </div>*/
-      //<Meal mealName={'Penne Carbonara'} mealData={penneCarbonara} />
+    return (
+      <div style={style}>
+        <Route exact path = '/' render = {() =>
+              <LandingPage onClick = {this.onClickButton} />} />
+        <Route path = '/meals' render = {() =>
+              <Meal mealData={data.meals[Math.floor((Math.random() * 5))]} />} />
+        <Route path = '/mealsearch' render = {() =>
+              <MealSearch 
+                initialItems = {data.meals.map(a => { return a.mealName })}
+                store = {store} />} />
+      </div>
     )
   }
 }
+
+Body.propTypes = {
+  store: PropTypes.object.isRequired
+}
+
+export default Body

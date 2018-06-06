@@ -1,6 +1,7 @@
 // header component
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import { Link } from 'react-router-dom'
 
 const style = {
     left: '50px',
@@ -27,10 +28,12 @@ const imgStyle = {
 export default class Header extends Component {
   render() {
     return (
-      <button style = {style} onClick = {this.props.onClick} >
-        <img src = {'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Back_Arrow.svg/2000px-Back_Arrow.svg.png'}
-            style = {imgStyle} />
-      </button>
+      <Link to = '/'>
+        <button style = {style} onClick = {this.props.onClick} >
+          <img src = {'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Back_Arrow.svg/2000px-Back_Arrow.svg.png'}
+              style = {imgStyle} />
+        </button>
+      </Link>
     )
   }
 }

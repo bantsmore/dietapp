@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import { Link } from 'react-router-dom'
 
 const style = {
     padding: '0px',
@@ -31,8 +32,12 @@ export default class SearchResults extends Component {
         <div style = {style}>
           <ul style = {ulStyle}>
             {
-              this.props.items.map(function(item) {
-                return <li key = {item} style = {liStyle}>{item}</li>
+              this.props.items.map(item => {
+                return <Link to = '/meals' key = {item}>
+                <li
+                  key = {item}
+                  style = {liStyle}
+                  onClick = {() => this.props.onClick(item)}>{item}</li></Link>
               })
             }
           </ul>

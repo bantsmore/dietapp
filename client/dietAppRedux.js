@@ -3,7 +3,8 @@
 export const types = {
     ADD: "ADD",
     REMOVE: "REMOVE",
-    NEWVIEW: "NEWVIEW"
+    NEWVIEW: "NEWVIEW",
+    CHANGEMEAL: "CHANGEMEAL"
   };
   
   // Helper functions to dispatch actions, optionally with payloads
@@ -16,6 +17,9 @@ export const types = {
     },
     newview: viewName => {
       return { type: types.NEWVIEW, payload: viewName }
+    },
+    changemeal: mealName => {
+      return { type: types.CHANGEMEAL, payload: mealName}
     }
   };
   
@@ -49,6 +53,12 @@ export const types = {
           view: payload
         }
       }
+      case types.CHANGEMEAL: {
+        return {
+          ...state,
+          activeMeal: payload
+        }
+      }
     }
     return state;
   };
@@ -58,6 +68,7 @@ export const types = {
   const initialState = {
     todos: ["Click to remove", "Learn React", "Write Code", "Ship App"],
     view: 'landing',
+    activeMeal: 'none',
     meals: [{
         "mealName": "Penne Carbonara",
         "MealId": "470612",

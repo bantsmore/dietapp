@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import { Link } from 'react-router-dom'
 
 const style = {
     padding: 0,
@@ -17,35 +18,27 @@ const styleButton = {
 
 export default class LandingPage extends Component {
 
-    handleClickB1(e) {
-        this.setState({
-            searchBoxText: e.target.value
-        });
-        var updatedList = this.props.initialItems;
-        updatedList = updatedList.filter((item) => {
-        return item.toLowerCase().search(
-            e.target.value.toLowerCase()) !== -1;
-      });
-      this.setState({items: updatedList});
-    }
-
     render() {
       return (
         <div style = {style}>
-            <button 
-                name = {'mealSearch'}
-                value = {'mealSearch'}
-                onClick = {this.props.onClick} 
-                style = {styleButton}>
-                Meal search
-            </button>
-            <button
-                name = {'meal'}
-                value = {'meal'}
-                onClick = {this.props.onClick}
-                style = {styleButton}>
-                Meal
-            </button>
+            <Link to = 'mealsearch'>
+                <button 
+                    name = {'mealSearch'}
+                    value = {'mealSearch'}
+                    onClick = {this.props.onClick} 
+                    style = {styleButton}>
+                    Meal search
+                </button>
+            </Link>
+            <Link to = 'meals'>
+                <button
+                    name = {'meal'}
+                    value = {'meal'}
+                    onClick = {this.props.onClick}
+                    style = {styleButton}>
+                    Meal
+                </button>
+            </Link>
         </div>
       )
     }
