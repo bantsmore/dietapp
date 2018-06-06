@@ -5,7 +5,7 @@ import MealSearch from './MealSearch'
 import Meal from './Meal'
 import LandingPage from './LandingPage'
 
-import { actionCreators } from './dietAppRedux'
+import { actionCreators } from '../../dietAppRedux'
 
 const style = {
   padding: 0,

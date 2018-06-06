@@ -4,12 +4,12 @@ import ReactDOM from 'react-dom'
 
 // redux setup
 import { createStore } from 'redux'
-import { reducer } from './dietAppRedux'
+import { reducer } from '../dietAppRedux'
 const store = createStore(reducer)
 
 // Top level components
-import Header from './header.js'
-import Body from './body.js'
+import Header from './views/Header'
+import Body from './views/Body'
 
 export default class App extends Component {
   render() {
