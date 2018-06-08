@@ -8,9 +8,9 @@ import { Route, Link } from 'react-router-dom'
 // Redux imports
 import { actionCreators } from '../../dietAppRedux'
 // Component imports
-import MealSearch from './MealSearch'
-import Meal from './Meal'
-import LandingPage from './LandingPage'
+import MealSearch from './mealsearch/MealSearch'
+import Meal from './meal/Meal'
+import LandingPage from './landing/LandingPage'
 
 const style = {
   padding: 0,
@@ -20,7 +20,7 @@ const style = {
 class Body extends Component {
   constructor(){
     super();
-    this.selectViewState = this.selectViewState.bind(this)
+    //this.selectViewState = this.selectViewState.bind(this)
     this.onClickButton = this.onClickButton.bind(this)
   }
   state = {}
@@ -47,7 +47,7 @@ class Body extends Component {
     store.dispatch(actionCreators.newview(e.target.value))
   }
 
-  selectViewState(store, data) {
+  /*selectViewState(store, data) {
     switch(store.getState().view){
       case 'landing':
         return(<LandingPage
@@ -61,21 +61,22 @@ class Body extends Component {
           initialItems = {data.meals.map(a => { return a.mealName })}
           store = {store} />)
     }
-  }
+  }*/
 
   render() {
     const {store} = this.props
     const data = store.getState();
     return (
       <div style={style}>
-        <Route exact path = '/' render = {() =>
-              <LandingPage onClick = {this.onClickButton} />} />
+        <Route exact path = '/' component = {LandingPage} />
         <Route path = '/meals' render = {() =>
-              <Meal mealData={data.meals[Math.floor((Math.random() * 5))]} />} />
-        <Route path = '/mealsearch' render = {() =>
               <MealSearch 
                 initialItems = {data.meals.map(a => { return a.mealName })}
                 store = {store} />} />
+        <Route path ='/meals/:mealname?' render = {() => 
+              <Meal mealData = {data.meals[1]} />} />
+        <Route path = '/randmeal' render = {() =>
+              <Meal mealData = {data.meals[Math.floor((Math.random() * 5))]} />} />
       </div>
     )
   }

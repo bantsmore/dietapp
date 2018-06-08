@@ -1,7 +1,7 @@
 // header component
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import BackButton from './BackButton'
+import BackButton from './util/BackButton'
 import { actionCreators } from '../../dietAppRedux';
 
 const style = {

@@ -3,7 +3,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 // Redux imports
-import { actionCreators } from '../../dietAppRedux'
+import { actionCreators } from '../../../dietAppRedux'
 // import components
 import SearchBox from './SearchBox'
 import SearchResults from './SearchResults'
@@ -17,7 +17,7 @@ export default class MealSearch extends Component {
     constructor() {
         super();
         this.handleChange = this.handleChange.bind(this);
-        this.onResultClick = this.onResultClick.bind(this);
+        //this.onResultClick = this.onResultClick.bind(this);
         this.state = {
             searchBoxText: '',
             items: []
@@ -45,11 +45,11 @@ export default class MealSearch extends Component {
       this.setState({items: updatedList});
     }
 
-    onResultClick(item) {
+    /*onResultClick(item) {
         const {store} = this.props
         store.dispatch(actionCreators.changemeal(item))
         console.log(store.getState().activeMeal)
-    }
+    }*/
 
     render() {
       return (
@@ -57,8 +57,7 @@ export default class MealSearch extends Component {
         <SearchBox onChange = {this.handleChange}
             searchBoxText = {this.state.searchBoxText} />
         <SearchResults
-            items = {this.state.items}
-            onClick = {this.onResultClick} />
+            items = {this.state.items} />
       </div>
       )
     }

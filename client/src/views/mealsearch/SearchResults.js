@@ -33,11 +33,10 @@ export default class SearchResults extends Component {
           <ul style = {ulStyle}>
             {
               this.props.items.map(item => {
-                return <Link to = '/meals' key = {item}>
+                return <Link to = {{pathname: '/meals/', search: item}} key = {item}>
                 <li
                   key = {item}
-                  style = {liStyle}
-                  onClick = {() => this.props.onClick(item)}>{item}</li></Link>
+                  style = {liStyle}>{item}</li></Link>
               })
             }
           </ul>

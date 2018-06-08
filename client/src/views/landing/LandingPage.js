@@ -21,22 +21,20 @@ export default class LandingPage extends Component {
     render() {
       return (
         <div style = {style}>
-            <Link to = 'mealsearch'>
+            <Link to = 'meals'>
                 <button 
                     name = {'mealSearch'}
                     value = {'mealSearch'}
-                    onClick = {this.props.onClick} 
                     style = {styleButton}>
                     Meal search
                 </button>
             </Link>
-            <Link to = 'meals'>
+            <Link to = 'randmeal'>
                 <button
-                    name = {'meal'}
-                    value = {'meal'}
-                    onClick = {this.props.onClick}
+                    name = {'Random Meal'}
+                    value = {'Random Meal'}
                     style = {styleButton}>
-                    Meal
+                    Random Meal
                 </button>
             </Link>
         </div>

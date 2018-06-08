@@ -2,9 +2,9 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import MealImage from './MealImage'
-import IngredientList from './IngredientList.js'
-import MethodList from './MethodList.js'
-import IngredientListCompressed from './IngredientListCompressed'
+import IngredientList from './ingredient/IngredientList.js'
+import MethodList from './method/MethodList.js'
+import IngredientListCompressed from './ingredient/IngredientListCompressed'
 
 const styles = {
   app: {
@@ -52,21 +52,11 @@ export default class Body extends Component {
     }
 
     render() {
-      switch(this.state.view){
-        case 'mealView':
           return (
             <div style={styles.main}>
             <MealImage src={this.props.mealData.image.src} />
             <IngredientListCompressed ingredients = {this.props.mealData.ingredients} onClick = {this.handleClick}/>
             <MethodList method = {this.props.mealData.method} />
-            </div>);
-        case 'ingredientsView':
-            return (
-              <div style={styles.main}>
-              <MealImage src={this.props.mealData.image.src} />
-              <IngredientList ingredients = {this.props.mealData.ingredients}/>
-              </div>
-            )
+            </div>)
       }
     }
-  }

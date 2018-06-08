@@ -3,6 +3,7 @@ module.exports = options => {
       entry: './index.js',
       output: {
         filename: 'bundle.js',
+        publicPath: '/',
       },
       module: {
         rules: [
@@ -19,6 +20,9 @@ module.exports = options => {
             ],
           },
         ],
+      },
+      devServer: {
+        historyApiFallback: true,
       },
     }
   }
